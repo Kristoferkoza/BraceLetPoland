@@ -1,0 +1,175 @@
+@import '../../variables';
+
+.selector-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.scheme-section, .size-section {
+    margin-bottom: 2.5rem;
+}
+
+.scheme-title, .size-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $text-color;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.scheme-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.scheme {
+    flex: 0 1 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    background: $secondary-color;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        
+        .scheme-name {
+            color: darken($accent-color, 20%);
+        }
+    }
+
+    &.selected {
+        position: relative;
+        background: lighten($accent-color, 40%);
+        border: 2px solid $accent-color;
+        
+        &::after {
+            content: '✓';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: $accent-color;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+    }
+}
+
+.image-container {
+    padding: 1rem;
+    background: white;
+    text-align: center;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scheme-image {
+    max-width: 100%;
+    max-height: 140px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.scheme-name {
+    text-align: center;
+    margin: 0.75rem 0;
+    font-weight: 500;
+    color: $text-color;
+    transition: color 0.3s ease;
+}
+
+.size-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.size {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid $accent-color;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    color: $text-color;
+    font-weight: 500;
+    
+    &:hover {
+        background: lighten($accent-color, 40%);
+        transform: scale(1.05);
+    }
+
+    &.selected {
+        background: $accent-color;
+        color: white;
+        transform: scale(1.1);
+    }
+}
+
+.actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.save-button {
+    background: $accent-color;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    &:hover:not(:disabled) {
+        background: darken($accent-color, 10%);
+        padding: 1rem 3rem;
+        
+        .arrow {
+            transform: translateX(3px);
+        }
+    }
+
+    &:disabled {
+        background: lighten($accent-color, 30%);
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

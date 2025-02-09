@@ -1,1 +1,43 @@
-<p>bracelet-selector works!</p>
+<div class="selector-container">
+    <div class="scheme-section">
+        <div class="scheme-title">WYBIERZ SZABLON BRANSOLETKI</div>
+        <div class="scheme-selector">
+            <div
+                class="scheme"
+                *ngFor="let scheme of braceletSchemes | keyvalue"
+                [class.selected]="selectedScheme === scheme.key"
+                (click)="selectScheme(scheme.key)"
+            >
+                <div class="image-container">
+                    <img [src]="scheme.value" [alt]="scheme.key" class="scheme-image"/>
+                </div>
+                <p class="scheme-name">{{ scheme.key }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="size-section">
+        <div class="size-title">WYBIERZ ROZMIAR NADGARSTKA</div>
+        <div class="size-selector">
+            <div
+                class="size"
+                *ngFor="let size of braceletSizes"
+                [class.selected]="selectedSize === size"
+                (click)="selectSize(size)"
+            >
+                {{ size }} cm
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button
+            class="save-button"
+            [disabled]="!selectedScheme || !selectedSize"
+            (click)="saveSettings(selectedScheme, selectedSize)"
+        >
+            IDĘ DALEJ
+            <span class="arrow">→</span>
+        </button>
+    </div>
+</div>
